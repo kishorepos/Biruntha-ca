@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <meta name="description" content="Biruntha & Co Auditors – Trusted Chartered Accountant firm in Omalur, Tamil Nadu. Expert auditing, GST registration, tax consulting, and business advisory." />
     <title>Biruntha & Co Auditors | Chartered Accountants</title>
 
@@ -40,17 +40,23 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             background: var(--obsidian);
             color: #e0e0e0;
-            margin: 0;
-            padding: 0;
+            position: relative;
         }
 
         /* ==================== PRELOADER ==================== */
@@ -91,6 +97,13 @@
             justify-content: center;
         }
 
+        @media (min-width: 380px) {
+            #preloader .logo-container {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
         @media (min-width: 640px) {
             #preloader .logo-container {
                 width: 100px;
@@ -123,12 +136,18 @@
         }
 
         #preloader .loading-line-container {
-            width: 160px;
+            width: 140px;
             height: 2px;
             background: rgba(180, 150, 100, 0.15);
             border-radius: 10px;
             overflow: hidden;
             margin-top: 10px;
+        }
+
+        @media (min-width: 380px) {
+            #preloader .loading-line-container {
+                width: 170px;
+            }
         }
 
         @media (min-width: 640px) {
@@ -154,7 +173,7 @@
 
         /* Premium scrollbar */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
             background: var(--obsidian-light);
@@ -296,7 +315,7 @@
                 box-shadow: 0 0 0 0 rgba(180, 140, 70, 0.55);
             }
             70% {
-                box-shadow: 0 0 0 20px rgba(180, 140, 70, 0);
+                box-shadow: 0 0 0 18px rgba(180, 140, 70, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(180, 140, 70, 0);
@@ -318,6 +337,7 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(180, 150, 100, 0.18);
             color: #e0e0e0;
+            font-size: 14px;
         }
         .input-focus-dark:focus {
             border-color: var(--gold-mid);
@@ -369,17 +389,16 @@
             font-style: italic;
         }
 
-        @media (max-width: 639px) {
-            .hero-heading {
-                font-size: 2.25rem;
-                line-height: 1.1;
-            }
-            .glass-card-mobile {
-                padding: 1.5rem;
-            }
-            .btn-mobile-full {
-                width: 100%;
-                justify-content: center;
+        /* Prevent any overflow */
+        .max-w-7xl {
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .max-w-7xl {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
         }
     </style>
@@ -399,25 +418,23 @@
     </div>
 
     <!-- ==================== NAVIGATION ==================== -->
-    <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-400 py-3 md:py-3.5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <!-- Logo Area -->
-            <a href="#" class="flex items-center space-x-2 sm:space-x-2.5 group" aria-label="Biruntha & Co Home">
-                <div class="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg flex items-center justify-center overflow-hidden border border-[rgba(180,150,100,0.3)] bg-[#0e0e0e] transition-all duration-400 group-hover:border-[rgba(210,170,100,0.55)] group-hover:shadow-[0_0_20px_rgba(180,140,70,0.2)]">
+    <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-400 py-2.5 md:py-3.5">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-1.5 sm:space-x-2.5 group" aria-label="Biruntha & Co Home">
+                <div class="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg flex items-center justify-center overflow-hidden border border-[rgba(180,150,100,0.3)] bg-[#0e0e0e] transition-all duration-400 group-hover:border-[rgba(210,170,100,0.55)] group-hover:shadow-[0_0_20px_rgba(180,140,70,0.2)]">
                     <img src="logo.png" alt="Biruntha & Co"
                     class="w-full h-full object-cover rounded-lg"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="absolute inset-0 items-center justify-center hidden" style="display:none;">
-                        <span class="monogram-hint text-xl sm:text-2xl gold-text">B</span>
+                        <span class="monogram-hint text-lg sm:text-2xl gold-text">B</span>
                     </div>
                 </div>
                 <div class="leading-tight">
-                    <span class="text-[#f0e0c0] font-bold text-base sm:text-lg md:text-xl tracking-tight block">Biruntha & Co</span>
-                    <span class="text-[9px] sm:text-[10px] md:text-[11px] text-[#8a7a60] tracking-[0.2em] uppercase hidden sm:block">Auditors</span>
+                    <span class="text-[#f0e0c0] font-bold text-sm sm:text-lg md:text-xl tracking-tight block">Biruntha & Co</span>
+                    <span class="text-[8px] sm:text-[10px] md:text-[11px] text-[#8a7a60] tracking-[0.2em] uppercase hidden sm:block">Auditors</span>
                 </div>
             </a>
 
-            <!-- Desktop Links -->
             <div class="hidden md:flex items-center space-x-0.5">
                 <a href="#services" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">Services</a>
                 <a href="#about" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">About</a>
@@ -428,14 +445,12 @@
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-[#d0c0a0] text-2xl focus:outline-none p-2 -mr-2" aria-label="Toggle menu">
+            <button id="menu-btn" class="md:hidden text-[#d0c0a0] text-2xl focus:outline-none p-2 -mr-1" aria-label="Toggle menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden mx-3 sm:mx-4 rounded-2xl bg-[#0e0e0e]/96 backdrop-blur-xl border border-[rgba(180,150,100,0.15)]">
+        <div id="mobile-menu" class="md:hidden mx-3 rounded-2xl bg-[#0e0e0e]/96 backdrop-blur-xl border border-[rgba(180,150,100,0.15)]">
             <div class="p-4 space-y-1">
                 <a href="#services" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">Services</a>
                 <a href="#about" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">About</a>
@@ -451,16 +466,16 @@
     <!-- ==================== HERO SECTION ==================== -->
     <header class="relative bg-[#060606] min-h-[100svh] flex items-center overflow-hidden hero-grid-subtle">
         <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute -top-24 -right-20 w-[300px] sm:w-[450px] md:w-[550px] h-[300px] sm:h-[450px] md:h-[550px] bg-[#a67c33]/6 rounded-full blur-[100px] sm:blur-[140px]"></div>
-            <div class="absolute -bottom-32 -left-16 w-[250px] sm:w-[350px] md:w-[450px] h-[250px] sm:h-[350px] md:h-[450px] bg-[#c9a85c]/4 rounded-full blur-[90px] sm:blur-[130px]"></div>
-            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[180px] sm:w-[220px] md:w-[280px] h-[180px] sm:h-[220px] md:h-[280px] bg-[#d4b870]/3 rounded-full blur-[70px] sm:blur-[100px]"></div>
+            <div class="absolute -top-24 -right-20 w-[250px] sm:w-[450px] md:w-[550px] h-[250px] sm:h-[450px] md:h-[550px] bg-[#a67c33]/6 rounded-full blur-[90px] sm:blur-[140px]"></div>
+            <div class="absolute -bottom-32 -left-16 w-[200px] sm:w-[350px] md:w-[450px] h-[200px] sm:h-[350px] md:h-[450px] bg-[#c9a85c]/4 rounded-full blur-[80px] sm:blur-[130px]"></div>
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[150px] sm:w-[220px] md:w-[280px] h-[150px] sm:h-[220px] md:h-[280px] bg-[#d4b870]/3 rounded-full blur-[60px] sm:blur-[100px]"></div>
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.5)_100%)]"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20">
             <div class="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-16">
                 <div class="lg:w-[55%] text-center lg:text-left" data-aos="fade-up" data-aos-duration="800">
-                    <span class="inline-flex items-center gap-2 bg-[#a67c33]/6 border border-[rgba(180,150,100,0.2)] text-[#c9a85c] text-[10px] sm:text-[11px] md:text-xs font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-5 sm:mb-6 tracking-[0.15em] uppercase">
+                    <span class="inline-flex items-center gap-2 bg-[#a67c33]/6 border border-[rgba(180,150,100,0.2)] text-[#c9a85c] text-[10px] sm:text-[11px] md:text-xs font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 tracking-[0.15em] uppercase">
                         <span class="w-1.5 h-1.5 bg-[#d4b870] rounded-full animate-pulse shadow-[0_0_8px_rgba(200,160,80,0.6)]"></span>
                         Chartered Accountant Firm
                     </span>
@@ -486,7 +501,7 @@
                         <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#c9a85c]"></i> Absolute Discretion</span>
                     </div>
                 </div>
-                <div class="lg:w-[45%] w-full max-w-sm sm:max-w-md mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="lg:w-[45%] w-full max-w-xs sm:max-w-md mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                     <div class="glass-card-dark-strong p-6 sm:p-8 md:p-10 rounded-3xl relative overflow-hidden shadow-gold-glow">
                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#a67c33]/6 rounded-full blur-[50px] pointer-events-none"></div>
                         <div class="relative z-10">
@@ -512,7 +527,7 @@
     </header>
 
     <!-- ==================== SERVICES SECTION ==================== -->
-    <section id="services" class="max-w-7xl mx-auto pt-6 sm:pt-8 md:pt-14 px-4 sm:px-6 relative z-20 pb-16 sm:pb-20 md:pb-28">
+    <section id="services" class="w-full max-w-7xl mx-auto pt-6 sm:pt-8 md:pt-14 px-4 sm:px-6 relative z-20 pb-16 sm:pb-20 md:pb-28">
         <div class="text-center mb-8 sm:mb-10 md:mb-14" data-aos="fade-up">
             <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">What We Offer</span>
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#f0e8d8] tracking-tight">Comprehensive Financial<br class="sm:hidden" /> Services</h2>
@@ -680,8 +695,8 @@
 <!-- ==================== APPOINTMENT SECTION ==================== -->
 <section id="appointment" class="relative bg-[#0a0a0a] py-16 sm:py-20 md:py-28 px-4 sm:px-6 overflow-hidden">
     <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-[#a67c33]/4 rounded-full blur-[80px] sm:blur-[100px]"></div>
-        <div class="absolute bottom-0 left-0 w-56 sm:w-72 h-56 sm:h-72 bg-[#c9a85c]/3 rounded-full blur-[60px] sm:blur-[80px]"></div>
+        <div class="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[#a67c33]/4 rounded-full blur-[70px] sm:blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-[#c9a85c]/3 rounded-full blur-[50px] sm:blur-[80px]"></div>
         <div class="divider-gold absolute top-0 left-5 right-5"></div>
     </div>
     <div class="max-w-4xl mx-auto relative z-10">
@@ -770,12 +785,12 @@
 </footer>
 
 <!-- Floating elements -->
-<div class="fixed bottom-6 right-5 md:hidden z-50">
+<div class="fixed bottom-6 right-4 md:hidden z-50">
     <a href="tel:09688992737" class="bg-[#111] text-[#d4b870] w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-2 border-[#a67c33]/40 pulse-ring-gold">
         <i class="fa-solid fa-phone text-lg"></i>
     </a>
 </div>
-<button id="backToTop" class="fixed bottom-6 left-5 z-50 bg-[#1a1a1a] text-[#c9a85c] w-11 h-11 rounded-full shadow-lg border border-[rgba(180,150,100,0.3)] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#d4b870] transition-all duration-300" aria-label="Back to top">
+<button id="backToTop" class="fixed bottom-6 left-4 z-50 bg-[#1a1a1a] text-[#c9a85c] w-11 h-11 rounded-full shadow-lg border border-[rgba(180,150,100,0.3)] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#d4b870] transition-all duration-300" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up text-sm"></i>
 </button>
 
@@ -854,8 +869,7 @@
     });
 
     document.addEventListener('click', (e) => {
-        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && mobileMenu.classList.contains(
-                'open')) {
+        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && mobileMenu.classList.contains('open')) {
             mobileMenu.classList.remove('open');
             menuIcon.className = 'fa-solid fa-bars';
         }
