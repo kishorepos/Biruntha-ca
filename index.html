@@ -2,126 +2,327 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <meta name="description" content="Biruntha & Co Auditors – Trusted Chartered Accountant firm in Omalur, Tamil Nadu. Expert auditing, GST registration, tax consulting, and business advisory." />
     <title>Biruntha & Co Auditors | Chartered Accountants</title>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
 
     <style>
         :root {
-            --deep-navy: #060e1a;
-            --navy: #0a1628;
-            --gold: #c8963e;
-            --gold-light: #d4a853;
-            --gold-pale: #f5e6c8;
+            --obsidian: #080808;
+            --obsidian-light: #0e0e0e;
+            --graphite: #1a1a1a;
+            --graphite-light: #222222;
+            --gold-deep: #8b6914;
+            --gold-mid: #a67c33;
+            --gold-base: #b8944a;
+            --gold-light: #c9a85c;
+            --gold-pale: #d4b870;
+            --gold-highlight: #e8d49e;
+            --gold-shimmer: #f7e0a3;
+            --champagne: #d9c9a3;
+            --champagne-light: #ede4cf;
+            --text-secondary: #b0b0b0;
+            --text-muted: #7a7a7a;
+            --border-subtle: rgba(180, 150, 100, 0.12);
+            --border-medium: rgba(180, 150, 100, 0.22);
+            --border-glow: rgba(200, 160, 80, 0.35);
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            background: var(--obsidian);
+            color: #e0e0e0;
+            position: relative;
         }
 
-        /* Premium scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6366f1, #8b5cf6);
-            border-radius: 10px;
-        }
-
-        /* Glass card effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        /* ==================== PRELOADER ==================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--obsidian);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* Hero subtle grid pattern */
-        .hero-grid {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        /* Gold gradient text */
-        .gold-text {
-            background: linear-gradient(135deg, #c8963e, #e0b860, #c8963e);
+        #preloader .logo-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(180, 150, 100, 0.4);
+            box-shadow: 0 0 25px rgba(180, 140, 70, 0.2);
+            margin-bottom: 20px;
+            background: #0e0e0e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 380px) {
+            #preloader .logo-container {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            #preloader .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        #preloader .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        #preloader .logo-fallback {
+            display: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 40px;
+            background: linear-gradient(135deg, #a67c33 0%, #c9a85c 25%, #f7e0a3 45%, #d4b870 60%, #a67c33 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Navbar scroll effects */
-        .nav-scrolled {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(6, 14, 26, 0.88);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        @media (min-width: 640px) {
+            #preloader .logo-fallback {
+                font-size: 48px;
+            }
         }
-        /* Hide navbar when scrolling down */
+
+        #preloader .loading-line-container {
+            width: 140px;
+            height: 2px;
+            background: rgba(180, 150, 100, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 380px) {
+            #preloader .loading-line-container {
+                width: 170px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            #preloader .loading-line-container {
+                width: 200px;
+            }
+        }
+
+        #preloader .loading-line {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #a67c33, #f7e0a3, #a67c33);
+            border-radius: 10px;
+            animation: loadingBar 2s ease-in-out forwards;
+            box-shadow: 0 0 12px rgba(200, 160, 80, 0.5);
+        }
+
+        @keyframes loadingBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Premium scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold-mid), var(--gold-light));
+            border-radius: 10px;
+        }
+
+        /* Gold gradient text utility */
+        .gold-text {
+            background: linear-gradient(135deg, #a67c33 0%, #c9a85c 25%, #f7e0a3 45%, #d4b870 60%, #a67c33 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-text-subtle {
+            background: linear-gradient(135deg, #b8944a 0%, #d9c9a3 50%, #b8944a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .champagne-text {
+            color: var(--champagne);
+        }
+
+        /* Gold gradient button */
+        .btn-gold {
+            background: linear-gradient(135deg, #8b6914 0%, #a67c33 30%, #c9a85c 60%, #a67c33 80%);
+            color: #0a0a0a;
+            font-weight: 700;
+            border: 1px solid rgba(200, 160, 80, 0.4);
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            box-shadow: 0 6px 25px -8px rgba(180, 140, 70, 0.3), 0 0 0 1px rgba(200, 160, 80, 0.15) inset;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #9c7a20 0%, #b8944a 30%, #d4b870 60%, #b8944a 80%);
+            box-shadow: 0 12px 35px -8px rgba(200, 160, 80, 0.45), 0 0 0 1px rgba(220, 180, 100, 0.3) inset;
+            transform: translateY(-2px);
+            color: #050505;
+        }
+        .btn-gold-outline {
+            background: transparent;
+            border: 1.5px solid rgba(180, 150, 100, 0.5);
+            color: var(--gold-pale);
+            font-weight: 600;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            backdrop-filter: blur(6px);
+        }
+        .btn-gold-outline:hover {
+            background: rgba(180, 140, 80, 0.08);
+            border-color: rgba(210, 170, 100, 0.7);
+            color: var(--gold-shimmer);
+            box-shadow: 0 0 30px rgba(180, 140, 70, 0.15);
+        }
+
+        /* Glass card - dark premium */
+        .glass-card-dark {
+            background: rgba(20, 20, 20, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-subtle);
+        }
+        .glass-card-dark-strong {
+            background: rgba(14, 14, 14, 0.8);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid var(--border-medium);
+        }
+
+        /* Hero grid pattern */
+        .hero-grid-subtle {
+            background-image:
+                linear-gradient(rgba(200, 160, 80, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200, 160, 80, 0.018) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Navbar scroll */
+        .nav-scrolled {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            background: rgba(8, 8, 8, 0.9);
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+        }
         .nav-hidden {
             transform: translateY(-100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Premium shadow */
-        .shadow-premium {
-            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.08),
-                0 0 0 1px rgba(0, 0, 0, 0.03);
+        /* Card shadows */
+        .shadow-premium-dark {
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5),
+                0 0 0 1px var(--border-subtle);
         }
-        .shadow-premium-lg {
-            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.12),
-                0 0 0 1px rgba(0, 0, 0, 0.04);
+        .shadow-premium-lg-dark {
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--border-medium);
         }
-        .shadow-gold {
-            box-shadow: 0 15px 40px -10px rgba(200, 150, 62, 0.25);
+        .shadow-gold-glow {
+            box-shadow: 0 15px 45px -10px rgba(180, 140, 70, 0.2),
+                0 0 0 1px var(--border-glow);
         }
 
         /* Hover lift */
-        .hover-lift {
-            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2),
-                box-shadow 0.35s ease;
+        .hover-lift-dark {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
         }
-        .hover-lift:hover {
+        .hover-lift-dark:hover {
             transform: translateY(-6px);
-            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 28px 70px -18px rgba(0, 0, 0, 0.55),
+                0 0 0 1px var(--border-glow);
+            border-color: rgba(200, 160, 80, 0.4);
         }
 
-        /* Pulse animation for call button */
-        @keyframes pulse-ring {
+        /* Service icon */
+        .service-icon-gold {
+            background: rgba(180, 140, 70, 0.08);
+            color: var(--gold-light);
+            border: 1px solid rgba(180, 150, 100, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+        .service-card-dark:hover .service-icon-gold {
+            background: rgba(180, 140, 70, 0.18);
+            color: var(--gold-shimmer);
+            border-color: rgba(210, 170, 100, 0.5);
+            transform: scale(1.06);
+            box-shadow: 0 10px 30px -8px rgba(180, 140, 70, 0.3);
+        }
+
+        /* Pulse ring */
+        @keyframes pulse-ring-gold {
             0% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+                box-shadow: 0 0 0 0 rgba(180, 140, 70, 0.55);
             }
             70% {
-                box-shadow: 0 0 0 18px rgba(16, 185, 129, 0);
+                box-shadow: 0 0 0 18px rgba(180, 140, 70, 0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+                box-shadow: 0 0 0 0 rgba(180, 140, 70, 0);
             }
         }
-        .pulse-ring {
-            animation: pulse-ring 2.2s infinite;
+        .pulse-ring-gold {
+            animation: pulse-ring-gold 2.2s infinite;
         }
 
         /* Smooth scroll */
@@ -130,45 +331,25 @@
             scroll-padding-top: 80px;
         }
 
-        /* Service card icon transition */
-        .service-icon-wrap {
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-        }
-        .service-card:hover .service-icon-wrap {
-            background: #6366f1;
-            color: #fff;
-            transform: scale(1.08) rotate(-3deg);
-            box-shadow: 0 12px 30px -8px rgba(99, 102, 241, 0.45);
-        }
-
-        /* Testimonial card */
-        .testimonial-card {
-            position: relative;
-        }
-        .testimonial-card::before {
-            content: '\201C';
-            position: absolute;
-            top: -18px;
-            left: 20px;
-            font-size: 70px;
-            color: #e2e8f0;
-            font-family: serif;
-            line-height: 1;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Form input focus */
-        .input-focus {
+        /* Input focus */
+        .input-focus-dark {
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(180, 150, 100, 0.18);
+            color: #e0e0e0;
+            font-size: 14px;
         }
-        .input-focus:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
-            background: #fff;
+        .input-focus-dark:focus {
+            border-color: var(--gold-mid);
+            box-shadow: 0 0 0 4px rgba(180, 140, 70, 0.07);
+            background: rgba(255, 255, 255, 0.05);
+            outline: none;
+        }
+        .input-focus-dark::placeholder {
+            color: #5a5a5a;
         }
 
-        /* Back to top button */
+        /* Back to top */
         #backToTop {
             opacity: 0;
             visibility: hidden;
@@ -190,59 +371,92 @@
             margin-top: 0;
         }
         #mobile-menu.open {
-            max-height: 400px;
+            max-height: 420px;
             opacity: 1;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
-        @media (max-width: 767px) {
-            .hero-content br {
-                display: none;
+        /* Divider line */
+        .divider-gold {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180, 150, 100, 0.35), transparent);
+        }
+
+        /* B monogram decorative */
+        .monogram-hint {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Prevent any overflow */
+        .max-w-7xl {
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .max-w-7xl {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="antialiased">
 
-    <!-- ==================== NAVIGATION (scroll hide/show) ==================== -->
-    <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-400 py-3.5 md:py-4">
-        <div class="max-w-7xl mx-auto px-5 md:px-6 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" class="flex items-center space-x-2.5 group" aria-label="Biruntha & Co Home">
-                <div class="w-9 h-9 md:w-10 md:h-10 bg-indigo-600 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-gold-500 group-hover:shadow-gold">
-                    <i class="fa-solid fa-scale-balanced text-white text-sm md:text-base"></i>
+    <!-- ==================== PRELOADER ==================== -->
+    <div id="preloader">
+        <div class="logo-container">
+            <img src="logo.png" alt="Biruntha & Co"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <div class="logo-fallback" style="display:none;">B</div>
+        </div>
+        <div class="loading-line-container">
+            <div class="loading-line"></div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-400 py-2.5 md:py-3.5">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-1.5 sm:space-x-2.5 group" aria-label="Biruntha & Co Home">
+                <div class="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg flex items-center justify-center overflow-hidden border border-[rgba(180,150,100,0.3)] bg-[#0e0e0e] transition-all duration-400 group-hover:border-[rgba(210,170,100,0.55)] group-hover:shadow-[0_0_20px_rgba(180,140,70,0.2)]">
+                    <img src="logo.png" alt="Biruntha & Co"
+                    class="w-full h-full object-cover rounded-lg"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="absolute inset-0 items-center justify-center hidden" style="display:none;">
+                        <span class="monogram-hint text-lg sm:text-2xl gold-text">B</span>
+                    </div>
                 </div>
                 <div class="leading-tight">
-                    <span class="text-white font-bold text-lg md:text-xl tracking-tight block">Biruntha & Co</span>
-                    <span class="text-[10px] md:text-[11px] text-slate-400 tracking-widest uppercase hidden sm:block">Chartered Accountants</span>
+                    <span class="text-[#f0e0c0] font-bold text-sm sm:text-lg md:text-xl tracking-tight block">Biruntha & Co</span>
+                    <span class="text-[8px] sm:text-[10px] md:text-[11px] text-[#8a7a60] tracking-[0.2em] uppercase hidden sm:block">Auditors</span>
                 </div>
             </a>
 
-            <!-- Desktop Links -->
-            <div class="hidden md:flex items-center space-x-1">
-                <a href="#services" class="text-white/75 hover:text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/5">Services</a>
-                <a href="#about" class="text-white/75 hover:text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/5">About</a>
-                <a href="#location" class="text-white/75 hover:text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/5">Office</a>
-                <a href="#testimonials" class="text-white/75 hover:text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/5">Reviews</a>
-                <a href="#appointment" class="ml-3 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35">
+            <div class="hidden md:flex items-center space-x-0.5">
+                <a href="#services" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">Services</a>
+                <a href="#about" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">About</a>
+                <a href="#location" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">Office</a>
+                <a href="#testimonials" class="text-[#b0a080]/80 hover:text-[#e0d0b0] px-3 lg:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/[0.03]">Reviews</a>
+                <a href="#appointment" class="ml-2 btn-gold px-5 lg:px-6 py-2.5 rounded-lg text-sm font-semibold">
                     <i class="fa-regular fa-calendar-check mr-1.5"></i> Book Now
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none p-2 -mr-2" aria-label="Toggle menu">
+            <button id="menu-btn" class="md:hidden text-[#d0c0a0] text-2xl focus:outline-none p-2 -mr-1" aria-label="Toggle menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden mx-4 rounded-2xl bg-[#0a1628]/96 backdrop-blur-xl border border-white/8">
-            <div class="p-5 space-y-1">
-                <a href="#services" class="block py-3 px-4 text-white/80 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-all">Services</a>
-                <a href="#about" class="block py-3 px-4 text-white/80 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-all">About</a>
-                <a href="#location" class="block py-3 px-4 text-white/80 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-all">Office</a>
-                <a href="#testimonials" class="block py-3 px-4 text-white/80 hover:text-white hover:bg-white/5 rounded-xl text-sm font-medium transition-all">Reviews</a>
-                <a href="#appointment" class="block mt-3 py-3.5 px-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-xl text-sm font-semibold text-center transition-all shadow-lg">
+        <div id="mobile-menu" class="md:hidden mx-3 rounded-2xl bg-[#0e0e0e]/96 backdrop-blur-xl border border-[rgba(180,150,100,0.15)]">
+            <div class="p-4 space-y-1">
+                <a href="#services" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">Services</a>
+                <a href="#about" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">About</a>
+                <a href="#location" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">Office</a>
+                <a href="#testimonials" class="block py-3 px-4 text-[#c0b090]/85 hover:text-[#f0e0c0] hover:bg-white/[0.04] rounded-xl text-sm font-medium transition-all">Reviews</a>
+                <a href="#appointment" class="block mt-3 py-3.5 px-4 btn-gold rounded-xl text-sm font-semibold text-center">
                     <i class="fa-regular fa-calendar-check mr-1.5"></i> Book Appointment
                 </a>
             </div>
@@ -250,57 +464,60 @@
     </nav>
 
     <!-- ==================== HERO SECTION ==================== -->
-    <header class="relative bg-[#060e1a] min-h-[92vh] flex items-center overflow-hidden hero-grid">
+    <header class="relative bg-[#060606] min-h-[100svh] flex items-center overflow-hidden hero-grid-subtle">
         <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute -top-32 -right-32 w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[140px]"></div>
-            <div class="absolute -bottom-40 -left-24 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[130px]"></div>
-            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-amber-500/6 rounded-full blur-[100px]"></div>
+            <div class="absolute -top-24 -right-20 w-[250px] sm:w-[450px] md:w-[550px] h-[250px] sm:h-[450px] md:h-[550px] bg-[#a67c33]/6 rounded-full blur-[90px] sm:blur-[140px]"></div>
+            <div class="absolute -bottom-32 -left-16 w-[200px] sm:w-[350px] md:w-[450px] h-[200px] sm:h-[350px] md:h-[450px] bg-[#c9a85c]/4 rounded-full blur-[80px] sm:blur-[130px]"></div>
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[150px] sm:w-[220px] md:w-[280px] h-[150px] sm:h-[220px] md:h-[280px] bg-[#d4b870]/3 rounded-full blur-[60px] sm:blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.5)_100%)]"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-5 md:px-6 w-full relative z-10 pt-24 pb-16 md:pt-28 md:pb-20">
-            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20">
+            <div class="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-16">
                 <div class="lg:w-[55%] text-center lg:text-left" data-aos="fade-up" data-aos-duration="800">
-                    <span class="inline-flex items-center gap-2 bg-indigo-500/8 border border-indigo-400/15 text-indigo-300 text-[11px] md:text-xs font-semibold px-4 py-2 rounded-full mb-6 tracking-widest uppercase">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                    <span class="inline-flex items-center gap-2 bg-[#a67c33]/6 border border-[rgba(180,150,100,0.2)] text-[#c9a85c] text-[10px] sm:text-[11px] md:text-xs font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 tracking-[0.15em] uppercase">
+                        <span class="w-1.5 h-1.5 bg-[#d4b870] rounded-full animate-pulse shadow-[0_0_8px_rgba(200,160,80,0.6)]"></span>
                         Chartered Accountant Firm
                     </span>
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.08] mb-5 tracking-tight">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#f5f0e8] leading-[1.08] mb-4 sm:mb-5 tracking-tight">
                         Biruntha & Co<br class="hidden sm:block" />
                         <span class="gold-text">Auditors</span>
                     </h1>
-                    <p class="text-base md:text-lg text-slate-300 max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0">
-                        Expert financial auditing, tax compliance & business advisory. We empower your growth with clarity, precision, and strategic insight — trusted since 2015.
+                    <p class="text-sm sm:text-base md:text-lg text-[#b0a090] max-w-xl mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0">
+                        Meticulous financial auditing, tax compliance & strategic advisory. Precision-engineered for institutions and individuals who demand absolute integrity.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start">
-                        <a href="#appointment" class="group bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 text-center inline-flex items-center justify-center gap-2">
-                            <i class="fa-regular fa-calendar-check"></i> Book Appointment
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                        <a href="#appointment" class="btn-gold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-center inline-flex items-center justify-center gap-2 group text-sm sm:text-base">
+                            <i class="fa-regular fa-calendar-check"></i> Schedule Consultation
                             <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
                         </a>
-                        <a href="tel:09688992737" class="bg-white/6 hover:bg-white/12 text-white border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center inline-flex items-center justify-center gap-2 backdrop-blur-sm">
-                            <i class="fa-solid fa-phone text-indigo-400"></i> 096889 92737
+                        <a href="tel:09688992737" class="btn-gold-outline px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-center inline-flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="fa-solid fa-phone text-[#c9a85c]"></i> 096889 92737
                         </a>
                     </div>
-                    <div class="flex flex-wrap items-center gap-5 mt-8 justify-center lg:justify-start text-slate-400 text-xs md:text-sm">
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-500"></i> 100% Confidential</span>
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-400"></i> Quick Turnaround</span>
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-award text-indigo-400"></i> Certified Experts</span>
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-5 mt-6 sm:mt-8 justify-center lg:justify-start text-[#8a7a60] text-xs md:text-sm">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-[#c9a85c]"></i> Meticulous Audit</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-calculator text-[#c9a85c]"></i> Tax Consulting</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-[#c9a85c]"></i> Absolute Discretion</span>
                     </div>
                 </div>
-                <div class="lg:w-[45%] w-full max-w-md mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                    <div class="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-[50px] pointer-events-none"></div>
+                <div class="lg:w-[45%] w-full max-w-xs sm:max-w-md mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="glass-card-dark-strong p-6 sm:p-8 md:p-10 rounded-3xl relative overflow-hidden shadow-gold-glow">
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#a67c33]/6 rounded-full blur-[50px] pointer-events-none"></div>
                         <div class="relative z-10">
-                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-lg">
+                            <div class="flex items-center gap-1 text-[#d4b870] mb-3 text-base sm:text-lg">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
-                            <h3 class="text-4xl md:text-5xl font-extrabold text-white mb-1">5.0</h3>
-                            <p class="text-slate-300 text-sm uppercase tracking-widest mb-5">Google Rating</p>
-                            <p class="text-slate-400 italic text-sm leading-relaxed mb-6 border-l-2 border-indigo-500/40 pl-4">
-                                "Reliable, professional, and highly recommended auditing services."
+                            <h3 class="text-3xl sm:text-4xl md:text-5xl font-extrabold gold-text mb-1">5.0</h3>
+                            <p class="text-[#b0a080] text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-5">Google Rating</p>
+                            <p class="text-[#9a8a70] italic text-sm leading-relaxed mb-5 sm:mb-6 border-l-2 border-[#a67c33]/50 pl-4">
+                                "Unwavering precision. A firm that embodies trust and institutional excellence."
                             </p>
-                            <div class="border-t border-white/8 pt-5 flex items-center justify-between">
-                                <span class="text-xs text-slate-400 font-medium">Based on 9 Verified Reviews</span>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Pay_Logo.svg" alt="Google Pay" class="h-5 opacity-70" />
+                            <div class="border-t border-[rgba(180,150,100,0.12)] pt-4 sm:pt-5 flex items-center justify-between">
+                                <span class="text-xs text-[#7a6a55] font-medium">Based on 9 Verified Reviews</span>
+                                <span class="text-xs text-[#7a6a55] flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google text-[15px] text-[#c9a85c]"></i> Google
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -310,85 +527,84 @@
     </header>
 
     <!-- ==================== SERVICES SECTION ==================== -->
-    <section id="services" class="max-w-7xl mx-auto pt-10 md:pt-16 px-5 md:px-6 relative z-20 pb-20 md:pb-28">
-        <div class="text-center mb-10 md:mb-14" data-aos="fade-up">
-            <span class="text-indigo-600 font-bold text-xs md:text-sm uppercase tracking-widest mb-2 block">What We Offer</span>
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Comprehensive Financial<br class="sm:hidden" /> Services</h2>
-            <p class="text-slate-500 mt-3 max-w-lg mx-auto text-sm md:text-base">End-to-end solutions tailored for businesses and individuals seeking financial clarity and compliance.</p>
+    <section id="services" class="w-full max-w-7xl mx-auto pt-6 sm:pt-8 md:pt-14 px-4 sm:px-6 relative z-20 pb-16 sm:pb-20 md:pb-28">
+        <div class="text-center mb-8 sm:mb-10 md:mb-14" data-aos="fade-up">
+            <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">What We Offer</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#f0e8d8] tracking-tight">Comprehensive Financial<br class="sm:hidden" /> Services</h2>
+            <p class="text-[#9a8a70] mt-2 sm:mt-3 max-w-lg mx-auto text-sm md:text-base">End-to-end solutions engineered for clarity, compliance, and confident growth.</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
-            <!-- Service cards (same as before) -->
-            <div class="service-card bg-white p-7 md:p-8 rounded-2xl shadow-premium hover-lift border border-slate-100 group cursor-default" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-icon-wrap w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 text-xl">
-                    <i class="fa-solid fa-file-shield"></i>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-7">
+            <div class="service-card-dark bg-[#111111] p-5 sm:p-7 md:p-8 rounded-2xl shadow-premium-dark hover-lift-dark border border-[rgba(180,150,100,0.1)] group cursor-default" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon-gold w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4 sm:mb-5 text-lg sm:text-xl">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <h4 class="text-lg md:text-xl font-bold mb-2.5 text-slate-900">Audit & Assurance</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Statutory audits, internal reviews, and compliance verification ensuring accuracy, transparency, and trust for your enterprise.</p>
-                <a href="#appointment" class="inline-flex items-center gap-1.5 text-indigo-600 font-semibold text-sm mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                <h4 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-2.5 text-[#e8dcc8]">Audit & Assurance</h4>
+                <p class="text-[#9a8a70] text-xs sm:text-sm leading-relaxed">Statutory audits, forensic review, and rigorous compliance verification — meticulous oversight for absolute transparency.</p>
+                <a href="#appointment" class="inline-flex items-center gap-1.5 text-[#c9a85c] font-semibold text-xs sm:text-sm mt-3 sm:mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
             </div>
-            <div class="service-card bg-white p-7 md:p-8 rounded-2xl shadow-premium hover-lift border border-slate-100 group cursor-default" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-icon-wrap w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 text-xl">
-                    <i class="fa-solid fa-receipt"></i>
+            <div class="service-card-dark bg-[#111111] p-5 sm:p-7 md:p-8 rounded-2xl shadow-premium-dark hover-lift-dark border border-[rgba(180,150,100,0.1)] group cursor-default" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon-gold w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4 sm:mb-5 text-lg sm:text-xl">
+                    <i class="fa-solid fa-file-invoice"></i>
                 </div>
-                <h4 class="text-lg md:text-xl font-bold mb-2.5 text-slate-900">GST Registration & Filing</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Seamless GST registration, monthly/quarterly returns, and expert advisory to keep your business fully compliant.</p>
-                <a href="#appointment" class="inline-flex items-center gap-1.5 text-indigo-600 font-semibold text-sm mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                <h4 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-2.5 text-[#e8dcc8]">GST Registration & Filing</h4>
+                <p class="text-[#9a8a70] text-xs sm:text-sm leading-relaxed">Seamless registration, timely returns, and strategic advisory to keep your enterprise fully compliant and audit-ready.</p>
+                <a href="#appointment" class="inline-flex items-center gap-1.5 text-[#c9a85c] font-semibold text-xs sm:text-sm mt-3 sm:mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
             </div>
-            <div class="service-card bg-white p-7 md:p-8 rounded-2xl shadow-premium hover-lift border border-slate-100 group cursor-default sm:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-icon-wrap w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 text-xl">
+            <div class="service-card-dark bg-[#111111] p-5 sm:p-7 md:p-8 rounded-2xl shadow-premium-dark hover-lift-dark border border-[rgba(180,150,100,0.1)] group cursor-default sm:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon-gold w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4 sm:mb-5 text-lg sm:text-xl">
                     <i class="fa-solid fa-calculator"></i>
                 </div>
-                <h4 class="text-lg md:text-xl font-bold mb-2.5 text-slate-900">Income Tax Consulting</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Strategic tax planning, return filing, and representation for individuals & businesses to maximize legitimate savings.</p>
-                <a href="#appointment" class="inline-flex items-center gap-1.5 text-indigo-600 font-semibold text-sm mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                <h4 class="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-2.5 text-[#e8dcc8]">Income Tax Consulting</h4>
+                <p class="text-[#9a8a70] text-xs sm:text-sm leading-relaxed">Strategic planning, precise filing, and authoritative representation — engineered to optimize your legitimate tax position.</p>
+                <a href="#appointment" class="inline-flex items-center gap-1.5 text-[#c9a85c] font-semibold text-xs sm:text-sm mt-3 sm:mt-4 hover:gap-2 transition-all">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
             </div>
         </div>
     </section>
 
     <!-- ==================== ABOUT / WHY US ==================== -->
-    <section id="about" class="bg-white py-20 md:py-28 px-5 md:px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section id="about" class="bg-[#0a0a0a] py-16 sm:py-20 md:py-28 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
             <div data-aos="fade-right" data-aos-duration="700">
-                <span class="text-indigo-600 font-bold text-xs md:text-sm uppercase tracking-widest mb-2 block">About The Firm</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">Trusted Advisors for Your Financial Journey</h2>
-                <p class="text-slate-600 leading-relaxed mb-6 text-sm md:text-base">
-                    Biruntha & Co is a premier chartered accountant firm based in Omalur, Tamil Nadu. Led by seasoned professionals with over 9 years of experience, we combine deep technical expertise with a genuine personal touch. Our mission is to deliver transparent, accurate, and timely financial services that empower businesses and individuals alike.
+                <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">About The Firm</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#f0e8d8] mb-4 sm:mb-5 tracking-tight">Trusted Advisors for Your Financial Journey</h2>
+                <p class="text-[#b0a090] leading-relaxed mb-5 sm:mb-6 text-sm md:text-base">
+                    Biruntha & Co is a premier chartered accountant firm based in Omalur, Tamil Nadu. Led by seasoned professionals with over 9 years of experience, we fuse deep technical mastery with an unwavering commitment to integrity. Our mission: deliver transparent, precise, and timely financial services that empower institutions and individuals.
                 </p>
-                <div class="grid grid-cols-2 gap-3 mt-6">
-                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl">
-                        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-                        <span class="font-semibold text-sm text-slate-700">9+ Years Experience</span>
+                <div class="grid grid-cols-2 gap-2 sm:gap-3 mt-5 sm:mt-6">
+                    <div class="flex items-center gap-2 sm:gap-3 bg-[#111111] p-2 sm:p-3 rounded-xl border border-[rgba(180,150,100,0.08)]">
+                        <i class="fa-solid fa-circle-check text-[#c9a85c] text-base sm:text-lg"></i>
+                        <span class="font-semibold text-xs sm:text-sm text-[#c8b898]">9+ Years Experience</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl">
-                        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-                        <span class="font-semibold text-sm text-slate-700">500+ Happy Clients</span>
+                    <div class="flex items-center gap-2 sm:gap-3 bg-[#111111] p-2 sm:p-3 rounded-xl border border-[rgba(180,150,100,0.08)]">
+                        <i class="fa-solid fa-circle-check text-[#c9a85c] text-base sm:text-lg"></i>
+                        <span class="font-semibold text-xs sm:text-sm text-[#c8b898]">500+ Happy Clients</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl">
-                        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-                        <span class="font-semibold text-sm text-slate-700">100% Confidential</span>
+                    <div class="flex items-center gap-2 sm:gap-3 bg-[#111111] p-2 sm:p-3 rounded-xl border border-[rgba(180,150,100,0.08)]">
+                        <i class="fa-solid fa-circle-check text-[#c9a85c] text-base sm:text-lg"></i>
+                        <span class="font-semibold text-xs sm:text-sm text-[#c8b898]">Absolute Discretion</span>
                     </div>
-                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl">
-                        <i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-                        <span class="font-semibold text-sm text-slate-700">Quick Turnaround</span>
+                    <div class="flex items-center gap-2 sm:gap-3 bg-[#111111] p-2 sm:p-3 rounded-xl border border-[rgba(180,150,100,0.08)]">
+                        <i class="fa-solid fa-circle-check text-[#c9a85c] text-base sm:text-lg"></i>
+                        <span class="font-semibold text-xs sm:text-sm text-[#c8b898]">Rapid Turnaround</span>
                     </div>
                 </div>
             </div>
             <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-                <div class="bg-gradient-to-br from-indigo-50 to-white rounded-3xl p-8 md:p-10 shadow-premium-lg border border-indigo-100/60 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-100/50 rounded-bl-[60px] pointer-events-none"></div>
-                    <h3 class="text-2xl font-bold mb-7 text-slate-900 relative z-10">Our Core Values</h3>
-                    <ul class="space-y-5 relative z-10">
-                        <li class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-indigo-600 text-white rounded-lg flex items-center justify-center shrink-0 mt-0.5 shadow-md shadow-indigo-200"><i class="fa-solid fa-check text-sm"></i></div>
-                            <div><span class="font-semibold text-slate-800 text-sm">Integrity First</span><p class="text-slate-500 text-xs mt-0.5">Ethical practice and transparent communication — always.</p></div>
+                <div class="bg-[#0e0e0e] rounded-3xl p-6 sm:p-8 md:p-10 shadow-premium-lg-dark border border-[rgba(180,150,100,0.12)] relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 bg-[#a67c33]/4 rounded-bl-[60px] pointer-events-none"></div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-5 sm:mb-7 text-[#e8dcc8] relative z-10">Our Core Values</h3>
+                    <ul class="space-y-4 sm:space-y-5 relative z-10">
+                        <li class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-9 sm:h-9 bg-[#1a1a1a] text-[#c9a85c] rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-[rgba(180,150,100,0.2)] shadow-[0_0_12px_rgba(180,140,70,0.1)]"><i class="fa-solid fa-check text-xs sm:text-sm"></i></div>
+                            <div><span class="font-semibold text-[#d8c8a8] text-sm">Integrity First</span><p class="text-[#8a7a60] text-xs mt-0.5">Uncompromising ethics. Transparent communication — always.</p></div>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-indigo-600 text-white rounded-lg flex items-center justify-center shrink-0 mt-0.5 shadow-md shadow-indigo-200"><i class="fa-solid fa-check text-sm"></i></div>
-                            <div><span class="font-semibold text-slate-800 text-sm">Client-Centric</span><p class="text-slate-500 text-xs mt-0.5">Tailored strategies built around your unique financial needs.</p></div>
+                        <li class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-9 sm:h-9 bg-[#1a1a1a] text-[#c9a85c] rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-[rgba(180,150,100,0.2)] shadow-[0_0_12px_rgba(180,140,70,0.1)]"><i class="fa-solid fa-check text-xs sm:text-sm"></i></div>
+                            <div><span class="font-semibold text-[#d8c8a8] text-sm">Client-Centric</span><p class="text-[#8a7a60] text-xs mt-0.5">Bespoke strategies crafted around your unique financial architecture.</p></div>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-9 h-9 bg-indigo-600 text-white rounded-lg flex items-center justify-center shrink-0 mt-0.5 shadow-md shadow-indigo-200"><i class="fa-solid fa-check text-sm"></i></div>
-                            <div><span class="font-semibold text-slate-800 text-sm">Accuracy & Compliance</span><p class="text-slate-500 text-xs mt-0.5">Zero tolerance for errors — full adherence to all regulations.</p></div>
+                        <li class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-9 sm:h-9 bg-[#1a1a1a] text-[#c9a85c] rounded-lg flex items-center justify-center shrink-0 mt-0.5 border border-[rgba(180,150,100,0.2)] shadow-[0_0_12px_rgba(180,140,70,0.1)]"><i class="fa-solid fa-check text-xs sm:text-sm"></i></div>
+                            <div><span class="font-semibold text-[#d8c8a8] text-sm">Accuracy & Compliance</span><p class="text-[#8a7a60] text-xs mt-0.5">Zero tolerance for error — rigorous adherence to all regulatory frameworks.</p></div>
                         </li>
                     </ul>
                 </div>
@@ -396,96 +612,77 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS, LOCATION, APPOINTMENT, FOOTER (all unchanged) -->
-    <!-- (Same as previous version) ... but I'll keep them in the final code for completeness -->
-    <!-- I'll include them exactly as before, no changes -->
-
-    <section id="testimonials" class="py-20 md:py-28 px-5 md:px-6 bg-slate-50">
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section id="testimonials" class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-[#060606]">
         <div class="max-w-7xl mx-auto text-center" data-aos="fade-up">
-            <span class="text-indigo-600 font-bold text-xs md:text-sm uppercase tracking-widest mb-2 block">Client Testimonials</span>
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">What Our Clients Say</h2>
-            <p class="text-slate-500 max-w-lg mx-auto mb-12 text-sm md:text-base">Real feedback from real clients who trust us with their financial needs.</p>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="testimonial-card bg-white p-7 rounded-2xl shadow-premium text-left relative border border-slate-100" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative z-10">
-                        <div class="text-amber-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-slate-600 italic text-sm leading-relaxed mb-5">"Extremely professional and thorough. They handled our company audit with great expertise. Highly recommended."</p>
-                        <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-sm">RK</div>
-                            <div><div class="font-bold text-slate-800 text-sm">Rajesh K.</div><div class="text-xs text-slate-400">Small Business Owner</div></div>
-                        </div>
+            <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">Client Testimonials</span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#f0e8d8] mb-3 sm:mb-4 tracking-tight">What Our Clients Say</h2>
+            <p class="text-[#9a8a70] max-w-lg mx-auto mb-8 sm:mb-12 text-sm md:text-base">Authentic feedback from those who place their trust in our precision and integrity.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                <div class="bg-[#111111] p-5 sm:p-7 rounded-2xl shadow-premium-dark text-left relative border border-[rgba(180,150,100,0.1)]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-[#d4b870] mb-2 sm:mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-[#b0a090] italic text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5">"Exceptional precision. They handled our institutional audit with forensic-level detail. The gold standard in Omalur."</p>
+                    <div class="flex items-center gap-3 border-t border-[rgba(180,150,100,0.1)] pt-3 sm:pt-4">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-[#1a1a1a] text-[#c9a85c] rounded-full flex items-center justify-center font-bold text-xs sm:text-sm border border-[rgba(180,150,100,0.2)]">RK</div>
+                        <div><div class="font-bold text-[#d0c0a0] text-xs sm:text-sm">Rajesh K.</div><div class="text-xs text-[#7a6a55]">Small Business Owner</div></div>
                     </div>
                 </div>
-                <div class="testimonial-card bg-white p-7 rounded-2xl shadow-premium text-left relative border border-slate-100" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative z-10">
-                        <div class="text-amber-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-slate-600 italic text-sm leading-relaxed mb-5">"GST registration was completed smoothly. They saved me a lot of time and hassle. Excellent service."</p>
-                        <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-sm">LS</div>
-                            <div><div class="font-bold text-slate-800 text-sm">Lakshmi S.</div><div class="text-xs text-slate-400">Entrepreneur</div></div>
-                        </div>
+                <div class="bg-[#111111] p-5 sm:p-7 rounded-2xl shadow-premium-dark text-left relative border border-[rgba(180,150,100,0.1)]" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-[#d4b870] mb-2 sm:mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-[#b0a090] italic text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5">"GST registration was seamless. Their expertise saved me weeks of administrative burden. Impeccable service."</p>
+                    <div class="flex items-center gap-3 border-t border-[rgba(180,150,100,0.1)] pt-3 sm:pt-4">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-[#1a1a1a] text-[#c9a85c] rounded-full flex items-center justify-center font-bold text-xs sm:text-sm border border-[rgba(180,150,100,0.2)]">LS</div>
+                        <div><div class="font-bold text-[#d0c0a0] text-xs sm:text-sm">Lakshmi S.</div><div class="text-xs text-[#7a6a55]">Entrepreneur</div></div>
                     </div>
                 </div>
-                <div class="testimonial-card bg-white p-7 rounded-2xl shadow-premium text-left relative border border-slate-100 sm:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative z-10">
-                        <div class="text-amber-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <p class="text-slate-600 italic text-sm leading-relaxed mb-5">"Trustworthy and knowledgeable. My tax planning has never been better. Thank you Biruntha & Co!"</p>
-                        <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
-                            <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-sm">MR</div>
-                            <div><div class="font-bold text-slate-800 text-sm">Mohan R.</div><div class="text-xs text-slate-400">Salaried Professional</div></div>
-                        </div>
+                <div class="bg-[#111111] p-5 sm:p-7 rounded-2xl shadow-premium-dark text-left relative border border-[rgba(180,150,100,0.1)] sm:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-[#d4b870] mb-2 sm:mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-[#b0a090] italic text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5">"Trustworthy and deeply knowledgeable. My tax architecture has never been more optimized. A truly elite firm."</p>
+                    <div class="flex items-center gap-3 border-t border-[rgba(180,150,100,0.1)] pt-3 sm:pt-4">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-[#1a1a1a] text-[#c9a85c] rounded-full flex items-center justify-center font-bold text-xs sm:text-sm border border-[rgba(180,150,100,0.2)]">MR</div>
+                        <div><div class="font-bold text-[#d0c0a0] text-xs sm:text-sm">Mohan R.</div><div class="text-xs text-[#7a6a55]">Salaried Professional</div></div>
                     </div>
                 </div>
             </div>
-            <a href="#" class="inline-flex items-center gap-2 mt-10 text-indigo-600 font-semibold text-sm hover:text-indigo-700 transition-colors">
+            <a href="https://maps.app.goo.gl/UzJvTGZ93jUJAvWG9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-8 sm:mt-10 text-[#c9a85c] font-semibold text-xs sm:text-sm hover:text-[#d4b870] transition-colors">
                 <i class="fa-brands fa-google text-lg"></i> View all 9 reviews on Google
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
         </div>
     </section>
 
-    <section id="location" class="max-w-7xl mx-auto py-20 md:py-28 px-5 md:px-6">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+    <!-- ==================== LOCATION ==================== -->
+    <section id="location" class="max-w-7xl mx-auto py-16 sm:py-20 md:py-28 px-4 sm:px-6">
+        <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
             <div data-aos="fade-right" data-aos-duration="700">
-                <span class="text-indigo-600 font-bold text-xs md:text-sm uppercase tracking-widest mb-2 block">Visit Us</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-7 tracking-tight">Our Office</h2>
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-premium border border-slate-100">
-                        <div class="text-indigo-600 mt-1 shrink-0"><i class="fa-solid fa-location-dot text-xl"></i></div>
+                <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">Visit Us</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#f0e8d8] mb-5 sm:mb-7 tracking-tight">Our Office</h2>
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="flex items-start gap-3 sm:gap-4 bg-[#111111] p-4 sm:p-5 rounded-2xl shadow-premium-dark border border-[rgba(180,150,100,0.1)]">
+                        <div class="text-[#c9a85c] mt-1 shrink-0"><i class="fa-solid fa-location-dot text-lg sm:text-xl"></i></div>
                         <div>
-                            <p class="font-bold text-slate-800 text-sm">Govindhammal Complex</p>
-                            <p class="text-slate-500 text-sm">1st Floor R, BSNL office, 9/26, Mettur Main Rd, Omalur, Tamil Nadu 636455</p>
-                            <span class="inline-block mt-2 text-[11px] font-semibold bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-full">
+                            <p class="font-bold text-[#d0c0a0] text-sm">Govindhammal Complex</p>
+                            <p class="text-[#9a8a70] text-xs sm:text-sm">1st Floor R, BSNL office, 9/26, Mettur Main Rd, Omalur, Tamil Nadu 636455</p>
+                            <span class="inline-block mt-2 text-[10px] sm:text-[11px] font-semibold bg-[#1a1a1a] text-[#c9a85c] px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[rgba(180,150,100,0.15)]">
                                 <i class="fa-solid fa-map-pin mr-1"></i> Opposite DSP Office, Back of K.Nager
                             </span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-premium border border-slate-100">
-                        <div class="text-indigo-600 mt-1 shrink-0"><i class="fa-solid fa-clock text-xl"></i></div>
+                    <div class="flex items-start gap-3 sm:gap-4 bg-[#111111] p-4 sm:p-5 rounded-2xl shadow-premium-dark border border-[rgba(180,150,100,0.1)]">
+                        <div class="text-[#c9a85c] mt-1 shrink-0"><i class="fa-solid fa-clock text-lg sm:text-xl"></i></div>
                         <div>
-                            <p class="font-bold text-slate-800 text-sm">Working Hours</p>
-                            <p class="text-slate-500 text-sm">Monday – Saturday: 10:00 AM – 6:30 PM</p>
-                            <p class="text-red-500 font-semibold text-sm mt-0.5">Sunday: Closed</p>
-                        </div>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl shadow-premium border border-slate-100">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">We Accept</p>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-50 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 border border-slate-200">
-                                <i class="fa-solid fa-money-bill-wave text-green-600"></i> Cash
-                            </span>
-                            <span class="bg-slate-50 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2 border border-slate-200">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Pay_Logo.svg" alt="GPay" class="h-4" /> Google Pay
-                            </span>
+                            <p class="font-bold text-[#d0c0a0] text-sm">Working Hours</p>
+                            <p class="text-[#9a8a70] text-xs sm:text-sm">Monday – Saturday: 10:00 AM – 6:30 PM</p>
+                            <p class="text-red-400/80 font-semibold text-xs sm:text-sm mt-0.5">Sunday: Closed</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="h-72 sm:h-80 lg:h-auto lg:min-h-[420px] rounded-3xl overflow-hidden shadow-premium-lg border border-slate-200 relative" data-aos="fade-left" data-aos-duration="700">
+            <div class="h-64 sm:h-72 md:h-80 lg:h-auto lg:min-h-[420px] rounded-3xl overflow-hidden shadow-premium-lg-dark border border-[rgba(180,150,100,0.2)] relative" data-aos="fade-left" data-aos-duration="700">
                 <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3905.7876524316135!2d78.0416!3d11.7456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf038f385108f%3A0x6b779a557b6f6f9c!2sOmalur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000"
                 class="absolute inset-0 w-full h-full"
-                style="border:0;"
+                style="border:0; filter: grayscale(40%) brightness(0.85);"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -495,30 +692,32 @@
     </div>
 </section>
 
-<section id="appointment" class="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 py-20 md:py-28 px-5 md:px-6 overflow-hidden">
+<!-- ==================== APPOINTMENT SECTION ==================== -->
+<section id="appointment" class="relative bg-[#0a0a0a] py-16 sm:py-20 md:py-28 px-4 sm:px-6 overflow-hidden">
     <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-0 left-0 w-72 h-72 bg-amber-400/5 rounded-full blur-[80px]"></div>
+        <div class="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[#a67c33]/4 rounded-full blur-[70px] sm:blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-[#c9a85c]/3 rounded-full blur-[50px] sm:blur-[80px]"></div>
+        <div class="divider-gold absolute top-0 left-5 right-5"></div>
     </div>
     <div class="max-w-4xl mx-auto relative z-10">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl p-7 sm:p-10 md:p-12" data-aos="fade-up" data-aos-duration="700">
-            <div class="text-center mb-9">
-                <span class="text-indigo-600 font-bold text-xs md:text-sm uppercase tracking-widest mb-2 block">Get In Touch</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3">Schedule a Consultation</h2>
-                <p class="text-slate-500 text-sm md:text-base max-w-md mx-auto">Fill in the details and our team will get back to you within one working day.</p>
+        <div class="bg-[#0e0e0e] rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl p-5 sm:p-8 md:p-12 border border-[rgba(180,150,100,0.15)]" data-aos="fade-up" data-aos-duration="700">
+            <div class="text-center mb-6 sm:mb-9">
+                <span class="text-[#c9a85c] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-2 block">Get In Touch</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#f0e8d8] mb-2 sm:mb-3">Schedule a Consultation</h2>
+                <p class="text-[#9a8a70] text-xs sm:text-sm md:text-base max-w-md mx-auto">Complete the details below and you'll be directed to WhatsApp to confirm your appointment with our team.</p>
             </div>
-            <form id="appointmentForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5" novalidate>
+            <form id="appointmentForm" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5" novalidate>
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider">Full Name *</label>
-                    <input type="text" required placeholder="Your full name" class="input-focus w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 text-sm focus:outline-none" />
+                    <label class="text-xs font-bold text-[#b0a080] uppercase tracking-[0.15em]">Full Name *</label>
+                    <input type="text" required placeholder="Your full name" class="input-focus-dark w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl text-sm" />
                 </div>
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider">Phone Number *</label>
-                    <input type="tel" required placeholder="Enter mobile number" class="input-focus w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 text-sm focus:outline-none" />
+                    <label class="text-xs font-bold text-[#b0a080] uppercase tracking-[0.15em]">Phone Number *</label>
+                    <input type="tel" required placeholder="Enter mobile number" class="input-focus-dark w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl text-sm" />
                 </div>
                 <div class="space-y-1.5 sm:col-span-2">
-                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider">Service Required</label>
-                    <select class="input-focus w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-sm focus:outline-none appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%236366f1%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 18px;">
+                    <label class="text-xs font-bold text-[#b0a080] uppercase tracking-[0.15em]">Service Required</label>
+                    <select class="input-focus-dark w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl text-sm appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23c9a85c%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 18px;">
                     <option>Audit & Assurance</option>
                     <option>GST Registration & Filing</option>
                     <option>Income Tax Consulting</option>
@@ -526,86 +725,91 @@
                 </select>
             </div>
             <div class="sm:col-span-2 pt-2">
-                <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white py-4 rounded-xl font-bold text-base shadow-xl shadow-indigo-200 transition-all duration-300 flex items-center justify-center gap-2 group">
-                    <i class="fa-regular fa-paper-plane"></i> Send Request
+                <button type="submit" class="w-full btn-gold py-3.5 sm:py-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 group">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Continue to WhatsApp
                     <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
                 </button>
             </div>
         </form>
-        <div id="successMessage" class="hidden text-center py-10">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-5 text-3xl">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <h3 class="text-2xl font-extrabold text-slate-800 mb-2">Thank You!</h3>
-            <p class="text-slate-500 text-sm">We've received your request. Our team will contact you shortly.</p>
-        </div>
     </div>
 </div>
 </section>
 
-<footer class="bg-[#060e1a] text-white pt-16 md:pt-20 pb-8 px-5 md:px-6">
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-[#040404] text-[#b0a090] pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 px-4 sm:px-6 border-t border-[rgba(180,150,100,0.08)]">
     <div class="max-w-7xl mx-auto">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 sm:mb-12">
             <div class="sm:col-span-2 lg:col-span-1">
-                <div class="flex items-center space-x-2.5 mb-4">
-                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-scale-balanced text-white text-sm"></i>
+                <div class="flex items-center space-x-2 sm:space-x-2.5 mb-3 sm:mb-4">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center overflow-hidden border border-[rgba(180,150,100,0.25)] bg-[#0a0a0a]">
+                        <img src="logo.png" alt="Biruntha & Co"
+                        class="w-full h-full object-cover rounded-lg"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <span class="monogram-hint text-xl sm:text-2xl gold-text hidden" style="display:none;">B</span>
                     </div>
-                    <span class="font-bold text-xl tracking-tight">Biruntha & Co</span>
+                    <span class="font-bold text-lg sm:text-xl tracking-tight text-[#e0d0b0]">Biruntha & Co</span>
                 </div>
-                <p class="text-slate-400 text-sm leading-relaxed mb-4">Chartered Accountants & Auditors — delivering reliable financial services with integrity since 2015.</p>
-                <div class="flex space-x-3 text-slate-400 text-lg">
-                    <a href="#" class="hover:text-indigo-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="hover:text-indigo-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-indigo-400 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="hover:text-indigo-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                </div>
+                <p class="text-[#7a6a55] text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">Chartered Accountants & Auditors — delivering meticulous financial services with unwavering integrity since 2015.</p>
             </div>
             <div>
-                <h5 class="font-semibold text-indigo-300 mb-4 text-sm uppercase tracking-wider">Quick Links</h5>
-                <ul class="space-y-2.5 text-sm text-slate-400">
-                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
-                    <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
-                    <li><a href="#location" class="hover:text-white transition-colors">Our Office</a></li>
-                    <li><a href="#appointment" class="hover:text-white transition-colors">Book Appointment</a></li>
+                <h5 class="font-semibold text-[#c9a85c] mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-[0.15em]">Quick Links</h5>
+                <ul class="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-[#8a7a60]">
+                    <li><a href="#services" class="hover:text-[#d4b870] transition-colors">Services</a></li>
+                    <li><a href="#about" class="hover:text-[#d4b870] transition-colors">About Us</a></li>
+                    <li><a href="#testimonials" class="hover:text-[#d4b870] transition-colors">Testimonials</a></li>
+                    <li><a href="#location" class="hover:text-[#d4b870] transition-colors">Our Office</a></li>
+                    <li><a href="#appointment" class="hover:text-[#d4b870] transition-colors">Book Appointment</a></li>
                 </ul>
             </div>
             <div>
-                <h5 class="font-semibold text-indigo-300 mb-4 text-sm uppercase tracking-wider">Contact</h5>
-                <ul class="space-y-3 text-sm text-slate-400">
-                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-indigo-400 text-xs w-4"></i> 096889 92737</li>
-                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-envelope text-indigo-400 text-xs w-4"></i> info@birunthaco.in</li>
-                    <li class="flex items-start gap-2.5"><i class="fa-solid fa-map-pin text-indigo-400 text-xs w-4 mt-0.5"></i> Omalur, Tamil Nadu 636455</li>
+                <h5 class="font-semibold text-[#c9a85c] mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-[0.15em]">Contact</h5>
+                <ul class="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-[#8a7a60]">
+                    <li class="flex items-center gap-2 sm:gap-2.5"><i class="fa-solid fa-phone text-[#c9a85c] text-xs w-4"></i> 096889 92737</li>
+                    <li class="flex items-center gap-2 sm:gap-2.5"><i class="fa-solid fa-envelope text-[#c9a85c] text-xs w-4"></i> info@birunthaco.in</li>
+                    <li class="flex items-start gap-2 sm:gap-2.5"><i class="fa-solid fa-map-pin text-[#c9a85c] text-xs w-4 mt-0.5"></i> Omalur, Tamil Nadu 636455</li>
                 </ul>
             </div>
             <div>
-                <h5 class="font-semibold text-indigo-300 mb-4 text-sm uppercase tracking-wider">Business Hours</h5>
-                <ul class="space-y-2 text-sm text-slate-400">
+                <h5 class="font-semibold text-[#c9a85c] mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-[0.15em]">Business Hours</h5>
+                <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-[#8a7a60]">
                     <li>Mon – Sat: 10:00 AM – 6:30 PM</li>
-                    <li class="text-red-400 font-medium">Sunday: Closed</li>
+                    <li class="text-red-400/70 font-medium">Sunday: Closed</li>
                 </ul>
             </div>
         </div>
-        <div class="border-t border-white/8 pt-7 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <p class="text-slate-500 text-xs">&copy; 2026 Biruntha & Co Auditors. All rights reserved.</p>
-            <p class="text-slate-600 text-[10px] uppercase tracking-widest font-medium">Professional Chartered Accountant Firm</p>
+        <div class="border-t border-[rgba(180,150,100,0.08)] pt-5 sm:pt-7 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 text-center sm:text-left">
+            <p class="text-[#6a5a45] text-xs">&copy; 2026 Biruntha & Co Auditors. All rights reserved.</p>
+            <p class="text-[#5a4a35] text-[10px] uppercase tracking-[0.2em] font-medium">Professional Chartered Accountant Firm</p>
         </div>
     </div>
 </footer>
 
 <!-- Floating elements -->
-<div class="fixed bottom-5 right-5 md:hidden z-50">
-    <a href="tel:09688992737" class="bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-[3px] border-white pulse-ring">
+<div class="fixed bottom-6 right-4 md:hidden z-50">
+    <a href="tel:09688992737" class="bg-[#111] text-[#d4b870] w-14 h-14 rounded-full flex items-center justify-center shadow-2xl border-2 border-[#a67c33]/40 pulse-ring-gold">
         <i class="fa-solid fa-phone text-lg"></i>
     </a>
 </div>
-<button id="backToTop" class="fixed bottom-5 left-5 z-50 bg-white text-indigo-600 w-11 h-11 rounded-full shadow-lg border border-slate-200 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all duration-300" aria-label="Back to top">
+<button id="backToTop" class="fixed bottom-6 left-4 z-50 bg-[#1a1a1a] text-[#c9a85c] w-11 h-11 rounded-full shadow-lg border border-[rgba(180,150,100,0.3)] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#d4b870] transition-all duration-300" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up text-sm"></i>
 </button>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+</script>
 <script>
+    // ==================== PRELOADER LOGIC ====================
+    window.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 700);
+        }, 2000);
+    });
+
     AOS.init({ once: true, offset: 80, duration: 700, easing: 'ease-out-cubic' });
 
     const navbar = document.getElementById('navbar');
@@ -615,14 +819,11 @@
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Navbar hide/show on scroll direction
         if (scrollY > 80) {
             navbar.classList.add('nav-scrolled');
             if (scrollY > lastScroll) {
-                // Scrolling down -> hide navbar
                 navbar.classList.add('nav-hidden');
             } else {
-                // Scrolling up -> show navbar
                 navbar.classList.remove('nav-hidden');
             }
         } else {
@@ -630,14 +831,12 @@
         }
         lastScroll = scrollY;
 
-        // Back to top visibility
         if (scrollY > 500) {
             backToTop.classList.add('visible');
         } else {
             backToTop.classList.remove('visible');
         }
 
-        // Close mobile menu when scrolling (optional, but good UX)
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu.classList.contains('open')) {
             mobileMenu.classList.remove('open');
@@ -676,29 +875,50 @@
         }
     });
 
+    // ==================== WHATSAPP INTEGRATION ====================
     const form = document.getElementById('appointmentForm');
-    const successDiv = document.getElementById('successMessage');
+    const whatsappNumber = '919688992737';
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const nameInput = form.querySelector('input[type="text"]');
         const phoneInput = form.querySelector('input[type="tel"]');
-        if (!nameInput.value.trim() || !phoneInput.value.trim()) {
-            [nameInput, phoneInput].forEach(input => {
-                if (!input.value.trim()) {
-                    input.style.borderColor = '#ef4444';
-                    input.style.backgroundColor = '#fef2f2';
-                    setTimeout(() => {
-                        input.style.borderColor = '#e2e8f0';
-                        input.style.backgroundColor = '#f8fafc';
-                    }, 1500);
-                }
-            });
-            alert('Please fill in all required fields (Full Name and Phone Number).');
+        const serviceSelect = form.querySelector('select');
+
+        let hasError = false;
+        [nameInput, phoneInput].forEach(input => {
+            if (!input.value.trim()) {
+                input.style.borderColor = '#c0392b';
+                input.style.boxShadow = '0 0 0 3px rgba(192,57,43,0.15)';
+                hasError = true;
+                setTimeout(() => {
+                    input.style.borderColor = 'rgba(180,150,100,0.18)';
+                    input.style.boxShadow = 'none';
+                }, 2000);
+            }
+        });
+
+        if (hasError) {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.style.transform = 'translateX(-4px)';
+            setTimeout(() => { submitBtn.style.transform = 'translateX(4px)'; }, 100);
+            setTimeout(() => { submitBtn.style.transform = 'translateX(-3px)'; }, 200);
+            setTimeout(() => { submitBtn.style.transform = 'translateX(0)'; }, 300);
             return;
         }
-        form.style.display = 'none';
-        successDiv.classList.remove('hidden');
-        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const service = serviceSelect.value;
+
+        const messageBody =
+            `Hello%20Biruntha%20%26%20Co%2C%0A%0A` +
+            `I%20am%20*${encodeURIComponent(name)}*.%20I%20would%20like%20to%20schedule%20a%20consultation%20regarding%20*${encodeURIComponent(service)}*.%0A%0A` +
+            `%F0%9F%93%9E%20You%20can%20reach%20me%20at%3A%20${encodeURIComponent(phone)}%0A%0A` +
+            `Thank%20you%21`;
+
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${messageBody}`;
+        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
     });
 </script>
 
